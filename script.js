@@ -114,32 +114,30 @@ function createCard(cardData, index) {
     cardInner.appendChild(cardBack);
     card.appendChild(cardInner);
     
+   // Detecta iOS
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-const isAndroid = /Android/.test(navigator.userAgent);
+
+// Detecta si el dispositivo tiene touch
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
 if (isIOS) {
+    // iOS: touchend
     card.addEventListener('touchend', (e) => {
-        const isImage = e.target.tagName === 'IMG';
-        if (!isImage) return;
-
+        if (e.target.tagName !== 'IMG') return;
         e.stopPropagation();
         toggleCardFlip(card);
     });
-
-} else if (isAndroid) {
+} else if (isTouchDevice) {
+    // Otros dispositivos táctiles: touchstart
     card.addEventListener('touchstart', (e) => {
-        const isImage = e.target.tagName === 'IMG';
-        if (!isImage) return;
-
+        if (e.target.tagName !== 'IMG') return;
         e.stopPropagation();
         toggleCardFlip(card);
     });
-
 } else {
+    // Escritorio: click
     card.addEventListener('click', (e) => {
-        const isImage = e.target.tagName === 'IMG';
-        if (!isImage) return;
-
+        if (e.target.tagName !== 'IMG') return;
         e.stopPropagation();
         toggleCardFlip(card);
     });
