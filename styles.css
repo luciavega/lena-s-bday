@@ -336,10 +336,20 @@ body {
         padding: 10px;
     }
 
-   .card {
+.card {
     flex: 0 0 100%;
+    aspect-ratio: 3 / 4;
+    -webkit-tap-highlight-color: transparent;
+    transform: none; 
 }
 
+.card:hover {
+    transform: none !important;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
     .carousel {
         justify-content: center; 
     }
@@ -413,19 +423,8 @@ body {
     .instructions li {
         font-size: 0.95rem;
     }
-     .card:hover {
-        transform: none !important;
-    }
-    .card {
-        transform: none;
-        -webkit-tap-highlight-color: transparent;
-    }
-    .card.flipped {
-        transform: rotateY(180deg);
-    }
-    .card-inner {
-        transform: none;
-    }
+
+    
 }
 
 @media (max-width: 480px) {
