@@ -413,6 +413,19 @@ body {
     .instructions li {
         font-size: 0.95rem;
     }
+     .card:hover {
+        transform: none !important;
+    }
+    .card {
+        transform: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .card.flipped {
+        transform: rotateY(180deg);
+    }
+    .card-inner {
+        transform: none;
+    }
 }
 
 @media (max-width: 480px) {
