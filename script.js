@@ -115,8 +115,8 @@ function createCard(cardData, index) {
     card.appendChild(cardInner);
     
    card.addEventListener('touchstart', (e) => {
-    const isImage = e.target.tagName === 'IMG';
-    if (!isImage) return;
+    const isFront = e.target.closest('.card-front');
+    if (!isFront) return;
 
     e.preventDefault();
     e.stopPropagation();
@@ -124,8 +124,8 @@ function createCard(cardData, index) {
 });
 
 card.addEventListener('click', (e) => {
-    const isImage = e.target.tagName === 'IMG';
-    if (!isImage) return;
+    const isFront = e.target.closest('.card-front');
+    if (!isFront) return;
 
     e.stopPropagation();
     toggleCardFlip(card);
