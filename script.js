@@ -119,12 +119,10 @@ function createCard(cardData, index) {
         toggleCardFlip(card);
     });
     
-/*
-    card.addEventListener('touchend', (e) => {
-        e.stopPropagation();
-        toggleCardFlip(card);
-    });
-*/
+card.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    toggleCardFlip(card);
+});
     return card;
 }
 
