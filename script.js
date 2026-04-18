@@ -114,15 +114,19 @@ function createCard(cardData, index) {
     cardInner.appendChild(cardBack);
     card.appendChild(cardInner);
     
+   let isTouchDevice = 'ontouchstart' in window;
+
+if (isTouchDevice) {
+    card.addEventListener('touchstart', (e) => {
+        e.stopPropagation();
+        toggleCardFlip(card);
+    });
+} else {
     card.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleCardFlip(card);
     });
-    
-card.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    toggleCardFlip(card);
-});
+}
     return card;
 }
 
@@ -142,20 +146,21 @@ function setupCarouselControls() {
     
     const scrollAmount = 280; 
     
-    prevBtn.addEventListener('click', () => {
-        carousel.scrollBy({
-            left: -scrollAmount,
-            behavior: 'smooth'
-        });
+    prevBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    carousel.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
     });
-    
-    nextBtn.addEventListener('click', () => {
-        carousel.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-        });
+});
+
+nextBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    carousel.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
     });
-    
+});
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
             carousel.scrollBy({
