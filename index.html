@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Lena's Birthday Cards</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- ✅ SOLO FIREBASE COMPAT (CORRECTO PARA TU JS) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Lena's bday !!</h1>
+            <p>Cartas + un mensaje especial del Oráculo</p>
+        </header>
+
+        <section class="carousel-section">
+            <div class="carousel-wrapper">
+                <div class="carousel" id="cardsCarousel"></div>
+            </div>
+
+            <div class="carousel-controls">
+                <button class="scroll-button prev" id="prevBtn">❮</button>
+                <button class="scroll-button next" id="nextBtn">❯</button>
+            </div>
+        </section>
+
+        <section class="upload-section">
+            <h2>Comparti tu foto!!</h2>
+
+            <div class="upload-form">
+                <input 
+                    type="file" 
+                    id="imageInput" 
+                    accept="image/*"
+                >
+
+                <button id="uploadBtn" class="btn-upload">
+                    <span>Enviar</span>
+                    <span id="spinner" style="display:none;">⏳</span>
+                </button>
+            </div>
+
+            <div id="uploadStatus" class="upload-status"></div>
+
+            <p class="gallery-link">
+                <a href="gallery.html" target="_blank" class="btn-secondary">
+                    Ver la galeria
+                </a>
+            </p>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

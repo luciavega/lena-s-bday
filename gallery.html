@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Lena's Birthday</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+body.gallery-mode {
+    background: black;
+    margin: 0;
+    overflow: hidden;
+}
+
+.gallery-page {
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    position: relative;
+}
+
+.gallery-header,
+.gallery-status {
+    display: none;
+}
+
+.gallery-container {
+    position: absolute;
+    inset: 0;
+    overflow: auto; 
+    padding: 20px;
+}
+
+.gallery-masonry {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.gallery-item {
+    flex: 0 0 auto;
+    width: 160px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    display: block;
+}
+
+.gallery-item:hover {
+    transform: scale(1.08);
+    z-index: 10;
+}
+
+.back-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+}
+</style>
+</head>
+<body class="gallery-mode">
+    <a href="index.html" class="back-link">← Atrás</a>
+    
+    <div class="gallery-page">
+        <div class="gallery-header">
+            <h1>Lena's Gallery</h1>
+            <p id="gallerySubtitle"></p>
+        </div>
+        
+        <div class="gallery-container">
+            <div id="galleryContent" class="gallery-masonry">
+            </div>
+        </div>
+        
+        <div class="gallery-status">
+            <p>🔄<span id="imageCount"></span></p>
+        </div>
+    </div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <script src="gallery.js"></script>
+</body>
+</html>
