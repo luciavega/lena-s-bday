@@ -115,11 +115,12 @@ function createCard(cardData, index) {
         toggleCardFlip(card);
     });
     
+/*
     card.addEventListener('touchend', (e) => {
         e.stopPropagation();
         toggleCardFlip(card);
     });
-    
+*/
     return card;
 }
 
