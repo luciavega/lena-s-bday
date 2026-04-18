@@ -114,34 +114,22 @@ function createCard(cardData, index) {
     cardInner.appendChild(cardBack);
     card.appendChild(cardInner);
     
-   // Detecta iOS
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+   card.addEventListener('touchstart', (e) => {
+    const isImage = e.target.tagName === 'IMG';
+    if (!isImage) return;
 
-// Detecta si el dispositivo tiene touch
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    e.preventDefault();
+    e.stopPropagation();
+    toggleCardFlip(card);
+});
 
-if (isIOS) {
-    // iOS: touchend
-    card.addEventListener('touchend', (e) => {
-        if (e.target.tagName !== 'IMG') return;
-        e.stopPropagation();
-        toggleCardFlip(card);
-    });
-} else if (isTouchDevice) {
-    // Otros dispositivos táctiles: touchstart
-    card.addEventListener('touchstart', (e) => {
-        if (e.target.tagName !== 'IMG') return;
-        e.stopPropagation();
-        toggleCardFlip(card);
-    });
-} else {
-    // Escritorio: click
-    card.addEventListener('click', (e) => {
-        if (e.target.tagName !== 'IMG') return;
-        e.stopPropagation();
-        toggleCardFlip(card);
-    });
-}
+card.addEventListener('click', (e) => {
+    const isImage = e.target.tagName === 'IMG';
+    if (!isImage) return;
+
+    e.stopPropagation();
+    toggleCardFlip(card);
+});
     return card;
 }
 
