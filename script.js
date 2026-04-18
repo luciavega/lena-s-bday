@@ -114,15 +114,32 @@ function createCard(cardData, index) {
     cardInner.appendChild(cardBack);
     card.appendChild(cardInner);
     
-   let isTouchDevice = 'ontouchstart' in window;
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+const isAndroid = /Android/.test(navigator.userAgent);
 
-if (isTouchDevice) {
-    card.addEventListener('touchstart', (e) => {
+if (isIOS) {
+    card.addEventListener('touchend', (e) => {
+        const isImage = e.target.tagName === 'IMG';
+        if (!isImage) return;
+
         e.stopPropagation();
         toggleCardFlip(card);
     });
+
+} else if (isAndroid) {
+    card.addEventListener('touchstart', (e) => {
+        const isImage = e.target.tagName === 'IMG';
+        if (!isImage) return;
+
+        e.stopPropagation();
+        toggleCardFlip(card);
+    });
+
 } else {
     card.addEventListener('click', (e) => {
+        const isImage = e.target.tagName === 'IMG';
+        if (!isImage) return;
+
         e.stopPropagation();
         toggleCardFlip(card);
     });
@@ -146,21 +163,20 @@ function setupCarouselControls() {
     
     const scrollAmount = 280; 
     
-    prevBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    carousel.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
+    prevBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
     });
-});
-
-nextBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    carousel.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
+    
+    nextBtn.addEventListener('click', () => {
+        carousel.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
     });
-});
+    
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
             carousel.scrollBy({
